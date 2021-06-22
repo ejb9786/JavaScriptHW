@@ -4,7 +4,7 @@
 <head>
     <title>Invitation Page</title>
     <link rel="stylesheet" type="text/css" href="css/main.css" />
-    <script type="text/javascript">
+    <script src="script.js" type="text/javascript"/>
 
 var invitation = "Hello __recipientName_____!\n You have been invited to volunteer for an event held by __organizationName_____ on ___eventDate_____. Please come to the following website: to sign up as a volunteer.\n Thanks! \n __hostName__";
 //alert("vfkvkfm");
