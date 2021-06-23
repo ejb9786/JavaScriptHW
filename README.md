@@ -71,8 +71,7 @@ alert(invitation);
 <input type="text" name="hostName"placeholder="Host Name" />
 
 <input type="submit" value="Submit" onclick="checkPageForm()">
-
-</form>
 </section>
+</form>
 </body>
 </html>
