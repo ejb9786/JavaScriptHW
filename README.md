@@ -48,7 +48,6 @@ alert(invitation);
 </ul>
 
 </nav>
-<script>
 </header>
 <section id="pageForm">
 <form onsubmit="checkPageForm()">
@@ -75,6 +74,5 @@ alert(invitation);
 
 </form>
 </section>
-</script>
 </body>
 </html>
