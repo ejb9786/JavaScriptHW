@@ -12,7 +12,8 @@
 <script>
 var invitation = "Hello __recipientName_____!\n You have been invited to volunteer for an event held by __organizationName_____ on ___eventDate_____. Please come to the following website: to sign up as a volunteer.\n Thanks! \n __hostName__";
 //alert("vfkvkfm");
-function checkPageForm(){
+function checkPageForm()
+{
 //alert("hello");
 var recipientName = document.getElementsByName("recipientName")[0].value;
 var organizationName = document.getElementsByName("organizationName")[0].value;
