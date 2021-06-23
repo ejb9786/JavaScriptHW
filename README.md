@@ -3,17 +3,12 @@
 
 <head>
     <title>Invitation Page</title>
-
     <link rel="stylesheet" type="text/css" href="css/main.css" />
-    <script src="script.js" type="text/javascript">
-    
-    </script>
-     
-<script>
+    <script type="text/javascript">
+
 var invitation = "Hello __recipientName_____!\n You have been invited to volunteer for an event held by __organizationName_____ on ___eventDate_____. Please come to the following website: to sign up as a volunteer.\n Thanks! \n __hostName__";
 //alert("vfkvkfm");
-function checkPageForm()
-{
+function checkPageForm(){
 //alert("hello");
 var recipientName = document.getElementsByName("recipientName")[0].value;
 var organizationName = document.getElementsByName("organizationName")[0].value;
@@ -26,14 +21,15 @@ invitation = invitation.replace("organizationName",organizationName);
 invitation = invitation.replace("eventDate",eventDate);
 invitation = invitation.replace("hostName",hostName);
 //invitation = invitation.replace("recipientName",recipientName);
+
 alert(invitation);
+
 //document.getElementById("abc").innerHTML = invitation;
 }
 </script>
 
 </head>
 
-<html>
 <body>
 <header>
 <div class="top">
@@ -50,8 +46,8 @@ alert(invitation);
 <li><a href="registration.html">Registration</a>
 </li>
 </ul>
-</nav>
 
+</nav>
 </header>
 <section id="pageForm">
 <form onsubmit="checkPageForm()">
