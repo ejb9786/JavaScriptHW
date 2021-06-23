@@ -22,9 +22,7 @@ invitation = invitation.replace("organizationName",organizationName);
 invitation = invitation.replace("eventDate",eventDate);
 invitation = invitation.replace("hostName",hostName);
 //invitation = invitation.replace("recipientName",recipientName);
-
 alert(invitation);
-
 //document.getElementById("abc").innerHTML = invitation;
 }
 </script>
