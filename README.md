@@ -3,9 +3,10 @@
 
 <head>
     <title>Invitation Page</title>
+
     <link rel="stylesheet" type="text/css" href="css/main.css" />
     <script src="script.js" type="text/javascript"></script>
-    
+     
 <script>
 var invitation = "Hello __recipientName_____!\n You have been invited to volunteer for an event held by __organizationName_____ on ___eventDate_____. Please come to the following website: to sign up as a volunteer.\n Thanks! \n __hostName__";
 //alert("vfkvkfm");
@@ -22,9 +23,7 @@ invitation = invitation.replace("organizationName",organizationName);
 invitation = invitation.replace("eventDate",eventDate);
 invitation = invitation.replace("hostName",hostName);
 //invitation = invitation.replace("recipientName",recipientName);
-
 alert(invitation);
-
 //document.getElementById("abc").innerHTML = invitation;
 }
 </script>
