@@ -31,6 +31,7 @@ alert(invitation);
 
 </head>
 
+<html>
 <body>
 <header>
 <div class="top">
