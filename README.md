@@ -77,8 +77,7 @@ alert(invitation);
 
 </form>
 </section>
-
-</script>
-
 </body>
 </html>
+
+</script>
