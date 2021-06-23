@@ -47,8 +47,8 @@ alert(invitation);
 <li><a href="registration.html">Registration</a>
 </li>
 </ul>
-
 </nav>
+
 </header>
 <section id="pageForm">
 <form onsubmit="checkPageForm()">
