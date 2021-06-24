@@ -51,7 +51,6 @@ alert(invitation);
 </header>
 
 <script>
-
 <section id="pageForm">
 <form onsubmit="checkPageForm()">
 <label for="recipientName">Recipient name:</label>
