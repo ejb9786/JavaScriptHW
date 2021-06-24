@@ -79,5 +79,4 @@ alert(invitation);
 </section>
 </body>
 </html>
-
 </script>
