@@ -51,6 +51,7 @@ alert(invitation);
 </header>
 
 <script>
+
 <section id="pageForm">
 <form onsubmit="checkPageForm()">
 <label for="recipientName">Recipient name:</label>
@@ -73,6 +74,7 @@ alert(invitation);
 <input type="text" name="hostName"placeholder="Host Name" />
 
 <input type="submit" value="Submit" onclick="checkPageForm()">
+
 </script>
 
 </form>
