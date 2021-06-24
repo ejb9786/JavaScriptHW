@@ -49,7 +49,6 @@ alert(invitation);
 
 </nav>
 </header>
-
 <section id="pageForm">
 <form onsubmit="checkPageForm()">
 <label for="recipientName">Recipient name:</label>
