@@ -52,23 +52,23 @@ alert(invitation);
 <section id="pageForm">
 <form onsubmit="checkPageForm()">
 <label for="recipientName">Recipient name:</label>
-<input type="text" name="recipientName"placeholder="Enter your Recipient Name" />
+<input type="text" name="recipientName" placeholder="Enter your Recipient Name" />
 
 <label for="organizationName">Organization name:
 </label>
-<input type="text" name="organizationName"placeholder="Enter your Organization Name" />
+<input type="text" name="organizationName" placeholder="Enter your Organization Name" />
 
 <label for="eventDate">Event Date:
 </label>
-<input type="text" name="eventDate"placeholder="Enter your Event Date" />
+<input type="text" name="eventDate" placeholder="Enter your Event Date" />
 
 <label for="websiteURL">URL:
 </label>
-<input type="text" name="websiteURL"placeholder="Enter your Website URL" />
+<input type="text" name="websiteURL" placeholder="Enter your Website URL" />
 
 <label for="hostName_form">Host name:
 </label>
-<input type="text" name="hostName"placeholder="Host Name" />
+<input type="text" name="hostName" placeholder="Host Name" />
 
 <input type="submit" value="Submit" onclick="checkPageForm()">
 
