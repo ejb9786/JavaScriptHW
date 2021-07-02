@@ -4,8 +4,8 @@
 <head>
     <title>Invitation Page</title>
     <link rel="stylesheet" type="text/css" href="css/main.css" />
-    <script src="script.js" type="text/javascript"></script>
-<script>
+<script type="text/javascript">
+
 var invitation = "Hello __recipientName_____!\n You have been invited to volunteer for an event held by __organizationName_____ on ___eventDate_____. Please come to the following website: to sign up as a volunteer.\n Thanks! \n __hostName__";
 //alert("vfkvkfm");
 function checkPageForm(){
@@ -27,52 +27,65 @@ alert(invitation);
 //document.getElementById("abc").innerHTML = invitation;
 }
 </script>
-
 </head>
 
 <body>
-<header>
-<div class="top">
-<a class="logo" href="index.html">CapellaVolunteers<span class="dotcom">.org</span></a>
-</div>
-<nav>
-<ul class="topnav">
-<li><a href="index.html">Home</a>
-</li>
-<li><a href="invitation.html" class="active">Invitation</a>
-</li>
-<li><a href="gallery.html">Gallery</a>
-</li>
-<li><a href="registration.html">Registration</a>
-</li>
-</ul>
+    <header>
+        <div class="top">
+            <a class="logo" href="index.html">CapellaVolunteers<span class="dotcom">.org</span></a>
+        </div>
+        <nav>
+            <ul class="topnav">
+                <li><a href="index.html">Home</a>
+                </li>
+                <li><a href="invitation.html" class="active">Invitation</a>
+                </li>
+                <li><a href="gallery.html">Gallery</a>
+                </li>
+                <li><a href="registration.html">Registration</a>
+                </li>
+            </ul>
 
-</nav>
-</header>
-<section id="pageForm">
-<form onsubmit="checkPageForm()">
-<label for="recipientName">Recipient name:</label>
-<input type="text" name="recipientName" placeholder="Enter your Recipient Name" />
+        </nav>
+    </header>
+    <section id="pageForm">
+        <form onsubmit="checkPageForm()">
+            <label for="recipientName">Recipient name:</label>
+            <input type="text" name="recipientName" placeholder="Enter your Recipient Name" />
 
-<label for="organizationName">Organization name:
-</label>
-<input type="text" name="organizationName" placeholder="Enter your Organization Name" />
+            <label for="organizationName">Organization name:
+            </label>
+            <input type="text" name="organizationName" placeholder="Enter your Organization Name" />
 
-<label for="eventDate">Event Date:
-</label>
-<input type="text" name="eventDate" placeholder="Enter your Event Date" />
+            <label for="eventDate">Event Date:
+            </label>
+            <input type="text" name="eventDate" placeholder="Enter your Event Date" />
 
-<label for="websiteURL">URL:
-</label>
-<input type="text" name="websiteURL" placeholder="Enter your Website URL" />
+            <label for="websiteURL">URL:
+            </label>
+            <input type="text" name="websiteURL" placeholder="Enter your Website URL" />
 
-<label for="hostName_form">Host name:
-</label>
-<input type="text" name="hostName" placeholder="Host Name" />
+            <label for="hostName">Host name:
+            </label>
+            <input type="text" name="hostName" placeholder="Host Name" />
 
-<input type="submit" value="Submit" onclick="checkPageForm()">
+            <input type="submit" value="Submit">
+        </form>
+    </section>
 
-</form>
-</section>
+
+    <article id="placeholderContent">
+        Hello <span id="recipientName">recipientName</span>!
+        <br/>
+        <br/> You have been invited to volunteer for an event held by <span id="organizationName">organizationName</span> on <span id="eventDate">eventDate</span>. Please come to the following website: <span id="websiteURL">websiteURL</span> to sign up as a volunteer.
+        <br/>
+        <br/> Thanks!
+        <br/>
+        <br/>
+        <span id="hostName">hostName</span>
+    </article>
+    <footer>This events site is for IT-FP3215 tasks.
+    </footer>
 </body>
+
 </html>
