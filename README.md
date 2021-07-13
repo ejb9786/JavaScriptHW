@@ -110,7 +110,5 @@
   </section>
   <section id="pageForm"></section>
   <article id="placeholderContent"></article>
-  <footer>This events site is for IT-FP3215 tasks.
-  </footer>
-</body>
+  </body>
 </html>
