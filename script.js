@@ -1,70 +1,88 @@
+//definng global variable.
+
 var imageGallery = (function() {
 
-            var sliderInd = 0;
+    var sliderInd = 0; //defining global index to count slide images.
 
-            homepageBanner = function() {
+    homepageBanner = function() {
 
-                var i;
+            var i;
 
-                var banners = document.getElementsByClassName("banner");
+            var banners = document.getElementsByClassName("banner");
 
-                for (i = 0; i < banners.length; i++) {
+            for (i = 0; i < banners.length; i++) { //looping other baner images to hide.
 
-                    banners[i].style.display = "none";
+                banners[i].style.display = "none";
 
-                }
+            }
 
-                sliderInd++;
+            sliderInd++;
 
-                if (sliderInd > banners.length) { sliderInd = 1 }
+            if (sliderInd > banners.length) { sliderInd = 1 }
 
-                if (banners[sliderInd - 1] != undefined) {
+            if (banners[sliderInd - 1] != undefined) {
 
-                    banners[sliderInd - 1].style.display = "block";
+                banners[sliderInd - 1].style.display = "block"; //applying styles for slider image
 
-                    setTimeout(this.homepageBanner, 1000);
+            }
 
-                },
+            setTimeout(this.homepageBanner, 1000); //defining setTimeout to call recursive method with time of 3000 ms
 
-                addListeners = function() {
+        },
 
-                        var items = document.getElementsByClassName("image");
+        addListeners = function() {
 
-                        for (let index = 0; index < items.length; index++) {
+            var items = document.getElementsByClassName("image"); //getting img elements by CSS class name to register event
 
-                            const element = items[index];
+            for (let index = 0; index < items.length; index++) {
 
-                            element.addEventListener("mouseover", this.loadFullImage, false);
+                const element = items[index];
 
-                        }
+                element.addEventListener("mouseover", this.loadFullImage, false);
+
+            }
 
 
 
-                    },
+        },
 
-                    loadFullImage = function(event)
+        loadFullImage = function(event) // mouse over event handler function to load full image
 
-                {
-                    console.log(event.target.src);
+    {
+        console.log(event.target.src);
 
-                    document.getElementById("fullImage").innerHTML = '<img src="' + event.target.src + '"/>';
+        document.getElementById("fullImage").innerHTML = '<img src="' + event.target.src + '"/>'; //adding full image to DIV
 
-                },
+    },
 
-                retObject = {
+    retObject = {
 
-                    init: function() {
+        //public function in return object will be exposed to other members.
 
-                        homepageBanner();
+        init: function() {
 
-                        addListeners();
 
-                    }
 
-                };
+            homepageBanner(); // calling preive method to load slider
 
-                return retObject;
+            addListeners(); // calling pricate method to register mouse over events
 
-            })();
 
-        imageGallery.init();
+
+
+
+        }
+
+    };
+
+    //returning the object.
+
+    return retObject;
+
+})();
+
+
+
+//calling a privileged method of module
+
+imageGallery.init();
