@@ -41,3 +41,6 @@ var imageGallery = (function() {
     //returning the object.
     return retObject;
 })();
+
+//calling a privileged method of module
+imageGallery.init();
