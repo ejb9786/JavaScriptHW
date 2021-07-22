@@ -1,70 +1,47 @@
-count = undefined;
-
-// this function is called once HTML has loaded completely
-window.onload = function() {
-    console.log('initializing')
-
-    // Get the count input field
-    var countElem = document.getElementById("recipientCount_form");
-    var recipientsDiv = document.getElementById("recipientsDiv_form");
-    console.log(countElem)
-    console.log(recipientsDiv)
-
-    // Execute a function when the user releases a key on the keyboard
-    countElem.addEventListener("keyup", function(event) {
-
-        // Cancel the default action, if needed
-        event.preventDefault();
-
-        // Number 13 is the "Enter" key on the keyboard
-        if (event.keyCode === 13) {
-            // Trigger the button element with a click
-            count = parseInt(countElem.value);
-
-            // remove if any field already exists
-            recipientsDiv.innerHTML = '';
-
-            var newInnerHtml = '';
-
-            for (var i = 1; i <= count; i++) {
-                newInnerHtml += '<label for="recipientName' + i + '">Recipient' + i + ' name:</label>'
-                newInnerHtml += '<input type="text" name="recipientName' + i + '" placeholder="Enter Recipient ' + i + ' Name" id="recipientName' + i + '_form" />';
+//definng global variable.
+var imageGallery = (function() {
+    var sliderInd = 0; //defining global index to count slide images.
+    homepageBanner = function() {
+            var i;
+            var banners = document.getElementsByClassName("banner");
+            for (i = 0; i < banners.length; i++) { //looping other baner images to hide.
+                banners[i].style.display = "none";
+            }
+            sliderInd++;
+            if (sliderInd > banners.length) { sliderInd = 1 }
+            if (banners[sliderInd - 1] != undefined) {
+                banners[sliderInd - 1].style.display = "block"; //applying styles for slider image
+            }
+            setTimeout(this.homepageBanner, 1000); //defining setTimeout to call recursive method with time of 3000 ms
+        },
+        addListeners = function() {
+            var items = document.getElementsByClassName("image"); //getting img elements by CSS class name to register event
+            for (let index = 0; index < items.length; index++) {
+                const element = items[index];
+                element.addEventListener("mouseover", this.loadFullImage, false);
             }
 
-            recipientsDiv.innerHTML = newInnerHtml;
-        }
-    });
-}
+        },
+        loadFullImage = function(event) // mouse over event handler function to load full image
+        {
+            console.log(event.target.src);
+            document.getElementById("fullImage").innerHTML = '<img src="' + event.target.src + '"/>'; //adding full image to DIV
+        },
+        retObject = {
 
-function create_invitation() {
-    if (count == undefined) {
-        alert('There are no recipients to print invitation for.');
-        return
-    }
-    var finalInvitationsDiv = document.getElementById("finalInvitations");
+            //public function in return object will be exposed to other members.
+            init: function() {
 
-    finalInvitationsDiv.innerHTML = ''
+                homepageBanner(); // calling preive method to load slider
+                addListeners(); // calling pricate method to register mouse over events
 
-    var invitation = 'Hello $recipientName$!<br/><br/> You have been invited to volunteer for an event held by $organizationName$ on $eventDate$. Please come to the following website: $websiteURL$ to sign up as a volunteer.<br/><br/> Thanks!<br/><br/>$hostName$'
 
-    var organizationName = document.getElementById("organizationName_form").value;
-    var eventDate = document.getElementById("eventDate_form").value;
-    var websiteURL = document.getElementById("websiteURL_form").value;
-    var hostName = document.getElementById("hostName_form").value;
+            }
+        };
+    //returning the object.
+    return retObject;
+})();
 
-    invitation = invitation.replace('$organizationName$', organizationName)
-    invitation = invitation.replace('$eventDate$', eventDate)
-    invitation = invitation.replace('$websiteURL$', websiteURL)
-    invitation = invitation.replace('$hostName$', hostName)
 
-    for (var i = 1; i <= count; i++) {
-        var recipientName = document.getElementById("recipientName" + i + "_form").value;
-
-        var invitation_copy = invitation;
-        var result = invitation_copy.replace('$recipientName$', recipientName)
-
-        finalInvitationsDiv.innerHTML += '<article id="invitaition_' + i + '">' + result + '</article>'
-    }
-    document.getElementById("recipientName").innerHTML = RecipientName;
-
-}
+//calling a privileged method of module
+imageGallery.init();
