@@ -10,7 +10,7 @@ var imageGallery = (function() {
 
             var banners = document.getElementsByClassName("banner");
 
-            for (i = 0; i < banners.length; i++) { //looping other baner images to hide.
+            for (i = 0; i < banners.length; i++) { //looping other banner images to hide.
 
                 banners[i].style.display = "none";
 
