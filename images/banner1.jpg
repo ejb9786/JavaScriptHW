@@ -1,9 +1,0 @@
-var img;
-function setup() {
-    createCanvas(800,600);
-    img=loadImage('banner1.jpg');
-}
-
-function draw() {
-    image(img,0,0);
-}
