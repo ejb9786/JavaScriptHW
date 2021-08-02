@@ -32,11 +32,92 @@
 			
 			-->
 
+        <div>User ID:
+
+            <span id="uid"></span>
+
+        </div>
+
+        <div>Password:
+
+            <span id="passid"></span>
+
+        </div>
+
+        <div>Firstname:
+
+            <span id="fname"></span>
+
+        </div>
+
+        <div>Lastname:
+
+            <span id="lname"></span>
+
+        </div>
+
+        <div>Email:
+
+            <span id="uemail"></span>
+
+        </div>
+
+        <div>Phone:
+
+            <span id="phn"></span>
+
+        </div>
 
     </section>
 
-    <footer>This events site is for IT-FP3215 tasks.
+    <footer>This events site is for IT3515 tasks.
+
     </footer>
+
+    <script type="text/javascript">
+        function getCookie(cname) {
+
+            var name = cname + "=";
+
+            var decodedCookie = decodeURIComponent(document.cookie);
+
+            var ca = decodedCookie.split(';');
+
+            for (var i = 0; i < ca.length; i++) {
+
+                var c = ca[i];
+
+                while (c.charAt(0) == ' ') {
+
+                    c = c.substring(1);
+
+                }
+
+                if (c.indexOf(name) == 0) {
+
+                    return c.substring(name.length, c.length);
+
+                }
+
+            }
+
+            return "";
+
+        }
+
+        document.getElementById("uid").innerHTML = getCookie("uid");
+
+        document.getElementById("passid").innerHTML = getCookie("passid");
+
+        document.getElementById("fname").innerHTML = getCookie("fname");
+
+        document.getElementById("lname").innerHTML = getCookie("lname");
+
+        document.getElementById("uemail").innerHTML = getCookie("uemail");
+
+        document.getElementById("phn").innerHTML = getCookie("phn");
+    </script>
+
 </body>
 
 </html>
