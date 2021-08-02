@@ -1,122 +1,270 @@
 <!DOCTYPE html>
+
 <html lang="en-US">
 
 <head>
-    <title>Interests Page</title>
+
+    <title>Invitation Page</title>
+
     <link rel="stylesheet" type="text/css" href="css/main.css" />
-</head>
-
-<body>
-    <header>
-        <div class="top">
-            <a class="logo" href="index.html">CapellaVolunteers<span class="dotcom">.org</span></a>
-        </div>
-        <nav>
-            <ul class="topnav">
-                <li><a href="index.html">Home</a>
-                </li>
-                <li><a href="invitation.html">Invitation</a>
-                </li>
-                <li><a href="gallery.html">Gallery</a>
-                </li>
-                <li><a href="registration.html" class="active">Registration</a>
-                </li>
-            </ul>
-
-        </nav>
-    </header>
-    <section id="pageFormContent">
-
-        <!--
-			Process content to display content on screen
-			
-			-->
-
-        <div>User ID:
-
-            <span id="uid"></span>
-
-        </div>
-
-        <div>Password:
-
-            <span id="passid"></span>
-
-        </div>
-
-        <div>Firstname:
-
-            <span id="fname"></span>
-
-        </div>
-
-        <div>Lastname:
-
-            <span id="lname"></span>
-
-        </div>
-
-        <div>Email:
-
-            <span id="uemail"></span>
-
-        </div>
-
-        <div>Phone:
-
-            <span id="phn"></span>
-
-        </div>
-
-    </section>
-
-    <footer>This events site is for IT3515 tasks.
-
-    </footer>
 
     <script type="text/javascript">
-        function getCookie(cname) {
+        function getCookie(name) {
 
-            var name = cname + "=";
+            var nameEQ = name + "=";
 
-            var decodedCookie = decodeURIComponent(document.cookie);
-
-            var ca = decodedCookie.split(';');
+            var ca = document.cookie.split(';');
 
             for (var i = 0; i < ca.length; i++) {
 
                 var c = ca[i];
 
-                while (c.charAt(0) == ' ') {
+                while (c.charAt(0) == ' ') c = c.substring(1, c.length);
 
-                    c = c.substring(1);
-
-                }
-
-                if (c.indexOf(name) == 0) {
-
-                    return c.substring(name.length, c.length);
-
-                }
+                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
 
             }
 
-            return "";
+            return null;
 
         }
 
-        document.getElementById("uid").innerHTML = getCookie("uid");
+        function str_obj(str) {
 
-        document.getElementById("passid").innerHTML = getCookie("passid");
+            str = str.split(', ');
 
-        document.getElementById("fname").innerHTML = getCookie("fname");
+            var result = {};
 
-        document.getElementById("lname").innerHTML = getCookie("lname");
+            for (var i = 0; i < str.length; i++) {
 
-        document.getElementById("uemail").innerHTML = getCookie("uemail");
+                var cur = str[i].split('=');
 
-        document.getElementById("phn").innerHTML = getCookie("phn");
+                result[cur[0]] = cur[1];
+
+            }
+
+            return result;
+
+        }
+
+        function fillForm() {
+
+            var regData = getCookie('saveRegData');
+
+            var obj = {};
+
+            if (regData) {
+
+                var regSplitStr = regData.split(",");
+
+                for (var i = 0; i < regSplitStr.length; ++i) {
+
+                    var tmp = regSplitStr[i].split("=");
+
+                    obj[tmp[0]] = tmp[1];
+
+                }
+
+                document.getElementsByName("userName")[0].innerText = obj.uid;
+
+                document.getElementsByName("firstName")[0].innerText = obj.fName;
+
+                document.getElementsByName("lastName")[0].innerText = obj.lName;
+
+                document.getElementsByName("password")[0].innerText = obj.pass;
+
+                document.getElementsByName("email")[0].innerText = obj.email;
+
+                document.getElementsByName("phoneNumber")[0].innerText = obj.phone;
+
+                document.getElementsByName("signUpNewsletter")[0].innerText = obj.signUp;
+
+                document.getElementsByName("interest")[0].innerText = obj.interest;
+
+                document.getElementsByName("comment")[0].innerText = obj.comment;
+
+                document.getElementsByName("referredby")[0].innerText = obj.referredBy;
+
+            }
+
+        }
     </script>
+
+</head>
+
+<body onload="fillForm()">
+
+    <header>
+
+        <div class="top">
+
+            <a class="logo" href="index.html">CapellaVolunteers<span class="dotcom">.org</span></a>
+
+        </div>
+
+        <nav>
+
+            <ul class="topnav">
+
+                <li>
+
+                    <a href="index.html">Home</a>
+
+                </li>
+
+                <li>
+
+                    <a href="invitation.html">Invitation</a>
+
+                </li>
+
+                <li>
+
+                    <a href="gallery.html">Gallery</a>
+
+                </li>
+
+                <li>
+
+                    <a href="registration.html" class="active">Registration</a>
+
+                </li>
+
+            </ul>
+
+        </nav>
+
+    </header>
+
+    <section id="pageForm">
+
+        <form action="confirmation.php" method="post" name="myForm">
+
+            <label for="userName">
+
+User Name:
+
+</label>
+
+            <label name="userName">
+
+</label>
+
+            <br/><br />
+
+            <label for="password">
+
+Password:
+
+</label>
+
+            <label name="password">
+
+</label>
+
+            <br /><br />
+
+            <label for="firstName">
+
+First Name:
+
+</label>
+
+            <label name="firstName">
+
+</label>
+
+            <br /><br />
+
+            <label for="lastName">
+
+Last Name:
+
+</label>
+
+            <label name="lastName">
+
+</label>
+
+            <br /><br />
+
+            <label for="email">
+
+Email:
+
+</label>
+
+            <label name="email">
+
+</label>
+
+            <br/><br />
+
+            <label for="phoneNumber">
+
+Phone:
+
+</label>
+
+            <label name="phoneNumber">
+
+</label>
+
+            <br /><br />
+
+            <label for="signUpNewsletter">
+
+Signup for newsletter:
+
+</label>
+
+            <label name="signUpNewsletter">
+
+</label>
+
+            <br /><br />
+
+            <label for="interest">
+
+Interest:
+
+</label>
+
+            <label name="interest">
+
+</label>
+
+            <br /><br />
+
+            <label for="comment">
+
+Comment:
+
+</label>
+
+            <label name="comment">
+
+</label>
+
+            <br /><br />
+
+            <label for="referredby">
+
+Referred By:
+
+</label>
+
+            <label name="referredby">
+
+</label>
+
+            <br /><br />
+
+            <input type="submit" value="OK" />
+
+        </form>
+
+    </section>
 
 </body>
 
