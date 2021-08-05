@@ -4,101 +4,23 @@
 
 <head>
 
-    <title>Invitation Page</title>
+    <title>Interests Page</title>
 
-    <link rel="stylesheet" type="text/css" href="css/main.css" />
-
-    <script type="text/javascript">
-        function getCookie(name) {
-
-            var nameEQ = name + "=";
-
-            var ca = document.cookie.split(';');
-
-            for (var i = 0; i < ca.length; i++) {
-
-                var c = ca[i];
-
-                while (c.charAt(0) == ' ') c = c.substring(1, c.length);
-
-                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
-
-            }
-
-            return null;
-
-        }
-
-        function str_obj(str) {
-
-            str = str.split(', ');
-
-            var result = {};
-
-            for (var i = 0; i < str.length; i++) {
-
-                var cur = str[i].split('=');
-
-                result[cur[0]] = cur[1];
-
-            }
-
-            return result;
-
-        }
-
-        function fillForm() {
-
-            var regData = getCookie('saveRegData');
-
-            var obj = {};
-
-            if (regData) {
-
-                var regSplitStr = regData.split(",");
-
-                for (var i = 0; i < regSplitStr.length; ++i) {
-
-                    var tmp = regSplitStr[i].split("=");
-
-                    obj[tmp[0]] = tmp[1];
-
-                }
-
-                document.getElementsByName("userName")[0].innerText = obj.uid;
-
-                document.getElementsByName("firstName")[0].innerText = obj.fName;
-
-                document.getElementsByName("lastName")[0].innerText = obj.lName;
-
-                document.getElementsByName("password")[0].innerText = obj.pass;
-
-                document.getElementsByName("email")[0].innerText = obj.email;
-
-                document.getElementsByName("phoneNumber")[0].innerText = obj.phone;
-
-                document.getElementsByName("signUpNewsletter")[0].innerText = obj.signUp;
-
-                document.getElementsByName("interest")[0].innerText = obj.interest;
-
-                document.getElementsByName("comment")[0].innerText = obj.comment;
-
-                document.getElementsByName("referredby")[0].innerText = obj.referredBy;
-
-            }
-
-        }
-    </script>
+    <link rel="stylesheet" type="text/css" href="main.css" />
 
 </head>
 
-<body onload="fillForm()">
+<body>
 
     <header>
 
         <div class="top">
 
-            <a class="logo" href="index.html">CapellaVolunteers<span class="dotcom">.org</span></a>
+            <a class="logo" href="index.html">CapellaVolunteers
+
+<span class="dotcom">.org</span>
+
+</a>
 
         </div>
 
@@ -120,6 +42,12 @@
 
                 <li>
 
+                    <a href="volunteer.html">Volunteers</a>
+
+                </li>
+
+                <li>
+
                     <a href="gallery.html">Gallery</a>
 
                 </li>
@@ -136,135 +64,99 @@
 
     </header>
 
-    <section id="pageForm">
+    <section id="pageFormContent">
 
-        <form action="confirmation.php" method="post" name="myForm">
+        <!--
 
-            <label for="userName">
+Process content to display content on screen
 
-User Name:
+-->
 
-</label>
+        <div>User ID:
 
-            <label name="userName">
+            <span id="uid"></span>
 
-</label>
+        </div>
 
-            <br/><br />
+        <div>Password:
 
-            <label for="password">
+            <span id="passid"></span>
 
-Password:
+        </div>
 
-</label>
+        <div>Firstname:
 
-            <label name="password">
+            <span id="fname"></span>
 
-</label>
+        </div>
 
-            <br /><br />
+        <div>Lastname:
 
-            <label for="firstName">
+            <span id="lname"></span>
 
-First Name:
+        </div>
 
-</label>
+        <div>Email:
 
-            <label name="firstName">
+            <span id="uemail"></span>
 
-</label>
+        </div>
 
-            <br /><br />
+        <div>Phone:
 
-            <label for="lastName">
+            <span id="phn"></span>
 
-Last Name:
-
-</label>
-
-            <label name="lastName">
-
-</label>
-
-            <br /><br />
-
-            <label for="email">
-
-Email:
-
-</label>
-
-            <label name="email">
-
-</label>
-
-            <br/><br />
-
-            <label for="phoneNumber">
-
-Phone:
-
-</label>
-
-            <label name="phoneNumber">
-
-</label>
-
-            <br /><br />
-
-            <label for="signUpNewsletter">
-
-Signup for newsletter:
-
-</label>
-
-            <label name="signUpNewsletter">
-
-</label>
-
-            <br /><br />
-
-            <label for="interest">
-
-Interest:
-
-</label>
-
-            <label name="interest">
-
-</label>
-
-            <br /><br />
-
-            <label for="comment">
-
-Comment:
-
-</label>
-
-            <label name="comment">
-
-</label>
-
-            <br /><br />
-
-            <label for="referredby">
-
-Referred By:
-
-</label>
-
-            <label name="referredby">
-
-</label>
-
-            <br /><br />
-
-            <input type="submit" value="OK" />
-
-        </form>
+        </div>
 
     </section>
+
+    <footer>This events site is for IT3515 tasks.
+
+    </footer>
+
+    <script type="text/javascript">
+        function getCookie(cname) {
+
+            var name = cname + "=";
+
+            var decodedCookie = decodeURIComponent(document.cookie);
+
+            var ca = decodedCookie.split(';');
+
+            for (var i = 0; i < ca.length; i++) {
+
+                var c = ca[i];
+
+                while (c.charAt(0) == ' ') {
+
+                    c = c.substring(1);
+
+                }
+
+                if (c.indexOf(name) == 0) {
+
+                    return c.substring(name.length, c.length);
+
+                }
+
+            }
+
+            return "";
+
+        }
+
+        document.getElementById("uid").innerHTML = getCookie("uid");
+
+        document.getElementById("passid").innerHTML = getCookie("passid");
+
+        document.getElementById("fname").innerHTML = getCookie("fname");
+
+        document.getElementById("lname").innerHTML = getCookie("lname");
+
+        document.getElementById("uemail").innerHTML = getCookie("uemail");
+
+        document.getElementById("phn").innerHTML = getCookie("phn");
+    </script>
 
 </body>
 
