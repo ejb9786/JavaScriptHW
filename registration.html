@@ -6,171 +6,283 @@
 
     <title>Invitation Page</title>
 
-    <link rel="stylesheet" type="text/css" href="css/main.css" />
+    <link rel="stylesheet" type="text/css" href="main.css" />
 
     <script type="text/javascript">
-        function validateForm() {
+        function formValidation() {
 
-            if (document.myForm.userName.value == "") {
+            //VARIABLES SET FOR EACH
 
-                alert("Enter user name ");
+            var uid = document.registration.userName;
 
-                document.myForm.userName.focus();
+            var passid = document.registration.password;
 
-                return false;
+            var conpassid = document.registration.passwordVerify;
 
-            }
+            var fname = document.registration.firstName;
 
-            if (!/^[a-zA-Z0-9]*$/g.test(document.myForm.userName.value)) {
+            var lname = document.registration.lastName;
 
-                alert("Invalid User Name Format ");
+            var uemail = document.registration.email;
 
-                document.myForm.userName.focus();
+            var phn = document.registration.phno.value;
 
-                return false;
+            if (userid_validation(uid)) {
 
-            }
+                if (passid_validation(passid)) {
 
-            if (document.myForm.password.value.length < 8) {
+                    if (checkpass(passid, conpassid)) {
 
-                alert("Password Should be minimum 8 character ");
+                        if (allLetter(fname)) {
 
-                document.myForm.password.focus();
+                            if (allLetter(lname)) {
 
-                return false;
+                                if (ValidateEmail(uemail)) {
 
-            }
+                                    if (phonenumber(phn)) {
 
-            var pass = new String(document.myForm.password.value);
+                                        document.forms["registration"].submit();
 
-            var passv = new String(document.myForm.passwordVerify.value);
+                                        setCookie("uid", uid.value, 1);
 
-            if (pass.localeCompare(passv) != 0) {
+                                        setCookie("passid", passid.value, 1);
 
-                alert("Password Does not Match ");
+                                        setCookie("fname", fname.value, 1);
 
-                document.myForm.passwordVerify.value = "";
+                                        setCookie("lname", lname.value, 1);
 
-                document.myForm.password.value = "";
+                                        setCookie("uemail", uemail.value, 1);
 
-                return false;
+                                        setCookie("phn", phn, 1);
 
-            }
+                                    }
 
-            if (document.myForm.firstName.value == "") {
+                                }
 
-                alert("Enter First Name ");
+                            }
 
-                document.myForm.firstName.focus();
+                        }
 
-                return false;
+                    }
 
-            }
-
-            if (!/^[a-zA-z]*$/g.test(document.myForm.firstName.value)) {
-
-                alert("Invalid Name Format must Use only letters ");
-
-                document.myForm.firstName.focus();
-
-                return false;
+                }
 
             }
-
-            if (document.myForm.lastName.value == "") {
-
-                alert("Enter Last Name ");
-
-                document.myForm.lastName.focus();
-
-                return false;
-
-            }
-
-            if (!/^[a-zA-z]*$/g.test(document.myForm.lastName.value)) {
-
-                alert("Invalid Name Format must Use only letters ");
-
-                document.myForm.firstName.focus();
-
-                return false;
-
-            }
-
-            if (!(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/g.test(document.myForm.email.value))) {
-
-                alert("Invalid email format");
-
-                return false;
-
-            }
-
-            if (!/^[(]{1}[0-9]{3}[)]{1}[-]{1}[0-9]{3}[-]{1}[0-9]{4}$/g.test(document.myForm.phoneNumber.value)) {
-
-                alert("Invalid Phone Number (xxx)-xxx-xxxx");
-
-                document.myForm.phoneNumber.focus();
-
-                return false;
-
-            }
-
-            window.location.href = "interest.html" + "?UID=" + document.myForm.userName.value +
-
-                "&FName=" + document.myForm.firstName.value +
-
-                "&LName=" + document.myForm.lastName.value +
-
-                "&Pass=" + document.myForm.password.value +
-
-                "&Email=" + document.myForm.email.value +
-
-                "&Phone=" + document.myForm.phoneNumber.value +
-
-                "&SignUp=" + document.myForm.signUpNewsletter.value;
 
             return false;
+
+        }
+
+        function setCookie(cname, cvalue, exdays) {
+
+            var d = new Date();
+
+            d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
+
+            var expires = "expires=" + d.toUTCString();
+
+            document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
+
+        }
+
+        function userid_validation(uid) //CHECKING FOR USER ID VALIDATION
+
+        {
+
+            var uid_len = uid.value.length;
+
+            var letterNumber = /^[0-9a-zA-Z]+$/; //VAR FOR ENSURING CORRECT CHARACTERS
+
+            if (uid_len == 0) //ENSURING NOT EMPTY
+
+            {
+
+                alert("User Id should not be empty"); //ALERT IF USERiD IS EMPTY
+
+                uid.focus();
+
+                return false;
+
+            } else if (uid.value.match(letterNumber)) {
+
+                return true;
+
+            } else {
+
+                alert("User Id should be alphanumeric");
+
+                uid.focus();
+
+                return false;
+
+            }
+
+        }
+
+        function passid_validation(passid) //PASSWORD VALIDATION for 8 characters
+
+        {
+
+            var passid_len = passid.value.length; //CHECKING FOR PASSWORD LENGTH
+
+            if (passid_len == 0) {
+
+                alert("Password should not be empty");
+
+                passid.focus();
+
+                return false;
+
+            } else if (passid_len < 8) //AT LEAST 8 CHARACTERS
+
+            {
+
+                alert("Password length must be more then 8 character");
+
+                passid.focus();
+
+                return false;
+
+            } else
+
+                return true;
+
+        }
+
+        function checkpass(passid, conpassid) //VERIFY PASSWORDS MATCH
+
+        {
+
+            if (passid.value == conpassid.value) //COMPARE PASSWORDS
+
+            {
+
+                return true;
+
+            } else {
+
+                alert("Confirm passwords, they do not match"); //ALERT IF THEY DO NOT MATCH
+
+                conpassid.focus();
+
+                return false;
+
+            }
+
+        }
+
+        function allLetter(fname) //validate first name for correct characters
+
+        {
+
+            var letters = /^[A-Za-z]+$/;
+
+            //document.print(lname);
+
+            if (fname.value.match(letters)) {
+
+                return true;
+
+            } else {
+
+                alert(" First Name or last name has to be letters and it can not be blank");
+
+                fname.focus();
+
+                return false;
+
+            }
+
+        }
+
+        function ValidateEmail(uemail) //validate email to be right format
+
+        {
+
+            var mailformat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/; //right format
+
+            if (uemail.value.match(mailformat)) {
+
+                return true;
+
+            } else {
+
+                alert("You have entered an invalid email address!"); //alert if email is invalid
+
+                uemail.focus();
+
+                return false;
+
+            }
+
+        }
+
+        function phonenumber(phn) { //validate phone number to be in xxx xxx xxxx format
+
+            var phoneno = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/; //format for phone number
+
+            if (phn.match(phoneno)) {
+
+                return true;
+
+            } else {
+
+                alert("Please enter the phone number with digits in this form: XXX XXX XXXX");
+
+                return false;
+
+            }
 
         }
     </script>
 
 </head>
 
-<body>
+<body onload="document.registration.userName.focus();">
 
     <header>
 
-        <div class="top">
+        <div class=" top ">
 
-            <a class="logo" href="index.html">CapellaVolunteers<span class="dotcom">.org</span></a>
+            <a class="logo " href="index.html ">CapellaVolunteers
+
+<span class="dotcom ">.org</span>
+
+</a>
 
         </div>
 
         <nav>
 
-            <ul class="topnav">
+            <ul class="topnav ">
 
                 <li>
 
-                    <a href="index.html">Home</a>
+                    <a href="index.html ">Home</a>
 
                 </li>
 
                 <li>
 
-                    <a href="invitation.html">Invitation</a>
+                    <a href="invitation.html ">Invitation</a>
 
                 </li>
 
                 <li>
 
-                    <a href="gallery.html">Gallery</a>
+                    <a href="volunteer.html ">Volunteers</a>
 
                 </li>
 
                 <li>
 
-                    <a href="registration.html" class="active">Registration</a>
+                    <a href="gallery.html ">Gallery</a>
+
+                </li>
+
+                <li>
+
+                    <a href="registration.html " class="active ">Registration</a>
 
                 </li>
 
@@ -180,77 +292,67 @@
 
     </header>
 
-    <section id="pageForm">
+    <section id="pageForm ">
 
-        <form onsubmit="return validateForm()" method="post" name="myForm">
+        <form name="registration" action="confirmation.html ">
 
-            <label for="userName">Username:</label>
+            <label for="userName ">Username:</label>
 
-            <input type="text" name="userName" placeholder="Enter your Username" />
+            <input type="text" name="userName" placeholder="Enter your Username " />
 
-            <label for="Password">
-
-Password:
+            <label for="Password ">Password:
 
 </label>
 
-            <input type="password" name="password" placeholder="Enter your Password" />
+            <input type="password" name="password" placeholder="Enter your Password " />
 
-            <label for="passwordVerify">
-
-Verify your Password:
+            <label for="passwordVerify">Verify your Password:
 
 </label>
 
-            <input type="password" name="passwordVerify" placeholder="Enter in your Password again" />
+            <input type="password" name="passwordVerify" placeholder="Enter in your Password again " />
 
-            <label for="firstName">
-
-First Name:
+            <label for="firstName">First Name:
 
 </label>
 
-            <input type="text" name="firstName" placeholder="Enter your First Name" />
+            <input type="text" name="firstName" placeholder="Enter your First Name " />
 
-            <label for="hostName">
-
-Last Name:
+            <label for="hostName">Last Name:
 
 </label>
 
-            <input type="text" name="lastName" placeholder="Enter your Last Name" />
+            <input type="text" name="lastName" placeholder="Enter your Last Name " />
 
-            <label for="email">
-
-Email:
+            <label for="email">Email:
 
 </label>
 
-            <input type="text" name="email" placeholder="Enter your Email Address" />
+            <input type="text" name="email" placeholder="Enter your Email Address " />
 
-            <label for="phoneNumber">
-
-Phone Number
+            <label for="phoneNumber">Phone Number:
 
 </label>
 
-            <input type="text" name="phoneNumber" placeholder="Enter your Phone Number" />
+            <input type="text" name="phno" placeholder="Enter your phone number " />
 
-            <label for="signUpNewsletter">
-
-Sign up for newsletter:
+            <label for="signUpNewsletter">Sign up for newsletter:
 
 </label>
 
             <input type="radio" name="signUpNewsletter" value="Yes" checked /> Yes
 
-            <input type="radio" name="signUpNewsletter" value="No" /> No
+            <input type="radio" name="signUpNewsletter" value="No"> No
 
-            <input type="submit" value="Next step" />
+            <input type="button" value="Next step" onClick="formValidation();" />
 
         </form>
 
     </section>
+
+    <footer>This events site is for IT3515 tasks.
+
+    </footer>
 
 </body>
 
