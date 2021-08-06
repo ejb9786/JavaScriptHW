@@ -1,52 +1,275 @@
 <!DOCTYPE html>
+
 <html lang="en-US">
 
 <head>
-    <title>Interests Page</title>
+
+    <title>Invitation Page</title>
+
     <link rel="stylesheet" type="text/css" href="css/main.css" />
+
+    <script type="text/javascript">
+        function getQuerystring(key, default_)
+
+        {
+
+            if (default_ == null) default_ = "";
+
+            key = key.replace(/[\\[]/, "\\\\\\[").replace(/[\\]]/, "\\\\\\]");
+
+            var regex = new RegExp("[\\\\?&]" + key + "=([^&#]*)");
+
+            var qs = regex.exec(window.location.href);
+
+            if (qs == null)
+
+                return default_;
+
+            else
+
+                return qs[1];
+
+        }
+
+        function fillForm() {
+
+            // CAPTURE QUERY STRING VALUES
+
+            var uid = getQuerystring('UID');
+
+            var fName = getQuerystring('FName');
+
+            var lName = getQuerystring('LName');
+
+            var pass = getQuerystring('Pass');
+
+            var email = getQuerystring('Email');
+
+            var phone = getQuerystring('Phone');
+
+            var signUp = getQuerystring('SignUp');
+
+            if (signUp == "Yes")
+
+            {
+
+                document.getElementById('signUpNewsletterYes').checked = true;
+
+            } else
+
+            {
+
+                document.getElementById('signUpNewsletterNo').checked = true;
+
+            }
+
+            document.myForm.userName.value = uid;
+
+            document.myForm.firstName.value = fName;
+
+            document.myForm.lastName.value = lName;
+
+            document.myForm.password.value = pass;
+
+            document.myForm.email.value = email;
+
+            document.myForm.phoneNumber.value = phone;
+
+            document.myForm.signUpNewsletter.value = signUp;
+
+        }
+
+        function setCookie(name, value, days) {
+
+            var expires = "";
+
+            if (days) {
+
+                var date = new Date();
+
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+
+                expires = "; expires=" + date.toUTCString();
+
+            }
+
+            document.cookie = name + "=" + (value || "") + expires + "; path=/";
+
+        }
+
+        function saveAndRedirect()
+
+        {
+
+            var data =
+
+                {
+
+                    uid: document.myForm.userName.value,
+
+                    fName: document.myForm.firstName.value,
+
+                    lName: document.myForm.lastName.value,
+
+                    pass: document.myForm.password.value,
+
+                    email: document.myForm.email.value,
+
+                    phone: document.myForm.phoneNumber.value,
+
+                    signUp: document.myForm.signUpNewsletter.value,
+
+                    interest: document.myForm.interest.value,
+
+                    comment: document.myForm.comment.value,
+
+                    referredBy: document.myForm.referredBy.value,
+
+                };
+
+            var dataString = "uid=" + data.uid + ",fName=" + data.fName + ",lName=" + data.lName + ",pass=" + data.pass + "" +
+
+                +",email=" + data.email + ",phone=" + data.phone + ",signUp=" + data.signUp + ",interest=" + data.interest + "" +
+
+                +",comment=" + data.comment + ",referredBy=" + data.referredBy + "";
+
+            setCookie("saveRegData", dataString, 1);
+
+            window.location.href = "confirm.html"
+
+            return false;
+
+        }
+    </script>
+
 </head>
 
-<body>
+<body onload="fillForm()">
+
     <header>
+
         <div class="top">
+
             <a class="logo" href="index.html">CapellaVolunteers<span class="dotcom">.org</span></a>
+
         </div>
+
         <nav>
+
             <ul class="topnav">
-                <li><a href="index.html">Home</a>
+
+                <li>
+
+                    <a href="index.html">Home</a>
+
                 </li>
-                <li><a href="invitation.html">Invitation</a>
+
+                <li>
+
+                    <a href="invitation.html">Invitation</a>
+
                 </li>
-                <li><a href="gallery.html">Gallery</a>
+
+                <li>
+
+                    <a href="gallery.html">Gallery</a>
+
                 </li>
-                <li><a href="registration.html" class="active">Registration</a>
+
+                <li>
+
+                    <a href="registration.html" class="active">Registration</a>
+
                 </li>
+
             </ul>
 
         </nav>
+
     </header>
+
     <section id="pageForm">
-        <form action="#">
 
-            <!--
-			Include other form fields here
-			
-			-->
+        <form onsubmit="return saveAndRedirect()" method="post" name="myForm">
+
+            <fieldset>
+
+                <legend>Choose your interests</legend>
+
+                <div>
+
+                    <input type="checkbox" id="coding" name="interest" value="technology">
+
+                    <label for="technology">Technology</label>
+
+                </div>
+
+                <div>
+
+                    <input type="checkbox" id="music" name="interest" value="music">
+
+                    <label for="music">Music</label>
+
+                </div>
+
+                <div>
+
+                    <input type="checkbox" id="movies" name="interest" value="movies">
+
+                    <label for="movies">Movies</label>
+
+                </div>
+
+            </fieldset>
+
+            <br />
+
+            <label for="signUpNewsletter">
+
+Sign up for newsletter:
+
+</label>
+
+            <input id="signUpNewsletterYes" type="radio" name="signUpNewsletter" value="Yes" /> Yes
+
+            <input id="signUpNewsletterNo" type="radio" name="signUpNewsletter" value="No" /> No
+
+            <br /><br />
+
+            <label for="comment">
+
+Comments:
+
+</label>
+
+            <textarea type="text" name="comment" placeholder="Enter your comment here..."></textarea>
+
+            <label for="referredBy">
+
+Referred by:
+
+</label>
+
+            <input type="text" name="referredBy" placeholder="Referred By" />
+
+            <input type="submit" value="Next step">
+
             <input type="hidden" name="userName" />
-            <input type="hidden" name="password" />
-            <input type="hidden" name="passwordVerify" />
-            <input type="hidden" name="firstName" />
-            <input type="hidden" name="lastName" />
-            <input type="hidden" name="email" />
-            <input type="hidden" name="lastName" />
-            <input type="hidden" name="signUpNewsletter" />
 
-            <input type="submit" value="Register">
+            <input type="hidden" name="password" />
+
+            <input type="hidden" name="firstName" />
+
+            <input type="hidden" name="lastName" />
+
+            <input type="hidden" name="email" />
+
+            <input type="hidden" name="phoneNumber" />
+
         </form>
+
     </section>
 
-    <footer>This events site is for IT-FP3215 tasks.
-    </footer>
 </body>
 
 </html>
